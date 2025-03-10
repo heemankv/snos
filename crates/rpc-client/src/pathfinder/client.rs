@@ -30,9 +30,9 @@ async fn post_jsonrpc_request<T: DeserializeOwned>(
     params: serde_json::Value,
 ) -> Result<T, ClientError> {
     let request = jsonrpc_request(method, params);
-    let response = client.post(format!("{}/rpc/pathfinder/v0.1", rpc_provider)).json(&request).send().await?;
+    let response = client.post(format!("{}", rpc_provider)).json(&request).send().await?;
 
-    #[derive(Deserialize)]
+    #[derive(Deserialize, Debug)]
     struct TransactionReceiptResponse<T> {
         result: T,
     }
@@ -61,12 +61,12 @@ pub struct PathfinderRpcClient {
 
 impl PathfinderRpcClient {
     pub fn new(base_url: &str) -> Self {
-        let starknet_rpc_url = format!("{}/rpc/v0_7", base_url);
+        let starknet_rpc_url = format!("{}/rpc/v0_8", base_url);
         log::info!("Starknet RPC URL: {}", starknet_rpc_url);
         let http_client =
             reqwest::ClientBuilder::new().build().unwrap_or_else(|e| panic!("Could not build reqwest client: {e}"));
 
-        Self { http_client, rpc_base_url: base_url.to_string() }
+        Self { http_client, rpc_base_url: starknet_rpc_url.to_string() }
     }
 
     pub async fn get_proof(
@@ -78,7 +78,7 @@ impl PathfinderRpcClient {
         post_jsonrpc_request(
             &self.http_client,
             &self.rpc_base_url,
-            "pathfinder_getProof",
+            "starknet_getStorageProof",
             json!({ "block_id": { "block_number": block_number }, "contract_address": contract_address, "keys": keys }),
         )
         .await
