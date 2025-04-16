@@ -419,7 +419,7 @@ dependencies = [
 [[package]]
 name = "blockifier"
 version = "0.8.0-rc.3"
-source = "git+https://github.com/Moonsong-Labs/sequencer?rev=6624e910c57db9a16f1607c1ed26f7d8f1114e73#6624e910c57db9a16f1607c1ed26f7d8f1114e73"
+source = "git+https://github.com/byteZorvin/sequencer?rev=17c3525dc5ab20dc6a6e6a26a26d6234c7c9afbb#17c3525dc5ab20dc6a6e6a26a26d6234c7c9afbb"
 dependencies = [
  "anyhow",
  "ark-ec",
@@ -4578,7 +4578,7 @@ dependencies = [
 [[package]]
 name = "starknet_api"
 version = "0.13.0-rc.1"
-source = "git+https://github.com/Moonsong-Labs/sequencer?rev=6624e910c57db9a16f1607c1ed26f7d8f1114e73#6624e910c57db9a16f1607c1ed26f7d8f1114e73"
+source = "git+https://github.com/byteZorvin/sequencer?rev=17c3525dc5ab20dc6a6e6a26a26d6234c7c9afbb#17c3525dc5ab20dc6a6e6a26a26d6234c7c9afbb"
 dependencies = [
  "bitvec",
  "cairo-lang-starknet-classes",
